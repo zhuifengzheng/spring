@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TulingBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException, ClassNotFoundException {
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		GenericBeanDefinition accountMapperBd= (GenericBeanDefinition) beanFactory.getBeanDefinition("accountMapper");
 		System.out.println("accountMapperBd:"+accountMapperBd.toString());
 		accountMapperBd.setBeanClass(AccountMapperFactoryBean.class);

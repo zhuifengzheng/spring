@@ -7,7 +7,8 @@ import java.io.Serializable;
  */
 public class Dept implements Serializable{
 
-    private Integer id;
+	private static final long serialVersionUID = 4854001792757346725L;
+	private Integer id;
 
 	@Override
 	public String toString() {

@@ -20,12 +20,12 @@ import java.util.Arrays;
  * @author: smlz
  * @date 2020/5/5 14:04
  */
-public class ProductMapperFactoryBean implements FactoryBean {
+public class ProductMapperFactoryBean implements FactoryBean<ProductMapper> {
 
 	@Nullable
 	@Override
 	public ProductMapper getObject() throws Exception {
-		return (ProductMapper) Proxy.newProxyInstance(ProductMapper.class.getClassLoader(),new Class[]{ProductMapper.class},new ProductMapperProxy());
+		return (ProductMapper) Proxy.newProxyInstance(ProductMapper.class.getClassLoader(),new Class<?>[]{ProductMapper.class},new ProductMapperProxy());
 	}
 
 	@Nullable
@@ -53,7 +53,7 @@ class ProductMapperProxy implements InvocationHandler {
 		System.out.println("解析业务sql:"+parseSql+"入参:"+ Arrays.asList(args));
 
 		//模拟查询数据库返回
-		Class returnType = method.getReturnType();
+		Class<?> returnType = method.getReturnType();
 		ProductInfo productInfo = (ProductInfo) returnType.newInstance();
 		productInfo.setProductName("苹果11");
 		productInfo.setStore(99);

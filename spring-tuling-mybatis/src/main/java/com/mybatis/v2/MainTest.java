@@ -21,6 +21,7 @@ public class MainTest {
 
 		ProductMapper productMapper = (ProductMapper) context.getBean("productMapper");
 		productMapper.qryProductInfoById(1);
+		System.out.println("=======================");
 		/*AccountMapper accountMapper = (AccountMapper) context.getBean("accountMapper");
 		accountMapper.qryAccount(1);*/
 	}

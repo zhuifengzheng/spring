@@ -25,6 +25,7 @@ public class TulingClassPathMapperScanner extends ClassPathBeanDefinitionScanner
 	}
 
 	//bean定义类型是接口的 可以添加到BeanDefinitionMap中
+	// todo Candidate:候选人 这里指要注册的bean
 	@Override
 	protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
 		return beanDefinition.getMetadata().isInterface();

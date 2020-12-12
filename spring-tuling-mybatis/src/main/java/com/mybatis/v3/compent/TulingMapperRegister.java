@@ -26,7 +26,7 @@ public class TulingMapperRegister implements BeanDefinitionRegistryPostProcessor
 
 	private String basePackage;
 
-	private static Class targetClass = TulingMapperFactorybean.class;
+	private static Class<TulingMapperFactorybean> targetClass = TulingMapperFactorybean.class;
 
 
 	@Override

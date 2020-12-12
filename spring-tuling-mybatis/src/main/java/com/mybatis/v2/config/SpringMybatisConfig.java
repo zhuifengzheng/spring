@@ -1,8 +1,10 @@
 package com.mybatis.v2.config;
 
 import com.mybatis.v2.anno.EnableMapperScanner;
+import com.mybatis.v2.compent.TulingImportBeanDefinitionRegister;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * [来个全套]
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(value = {"com.mybatis.v2"})
 @EnableMapperScanner(basePackage = "com.mybatis.v2.dao")
+//@Import(value = TulingImportBeanDefinitionRegister.class)
 public class SpringMybatisConfig {
 
 

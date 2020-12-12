@@ -64,13 +64,13 @@ public class ResourceUrlProviderJavaConfigTests {
 		this.request.setContextPath("/myapp");
 		this.response = new MockHttpServletResponse();
 
-		this.filterChain = new MockFilterChain(this.servlet,
-				new ResourceUrlEncodingFilter(),
-				(request, response, chain) -> {
-					Object urlProvider = context.getBean(ResourceUrlProvider.class);
-					request.setAttribute(ResourceUrlProviderExposingInterceptor.RESOURCE_URL_PROVIDER_ATTR, urlProvider);
-					chain.doFilter(request, response);
-				});
+//	todo	this.filterChain = new MockFilterChain(this.servlet,
+//				new ResourceUrlEncodingFilter(),
+//				(request, response, chain) -> {
+//					Object urlProvider = context.getBean(ResourceUrlProvider.class);
+//					request.setAttribute(ResourceUrlProviderExposingInterceptor.RESOURCE_URL_PROVIDER_ATTR, urlProvider);
+//					chain.doFilter(request, response);
+//				});
 	}
 
 	@Test

@@ -19,14 +19,14 @@ import java.util.Arrays;
  * @author: smlz
  * @date 2020/5/5 13:43
  */
-public class AccountMapperFactoryBean implements FactoryBean {
+public class AccountMapperFactoryBean implements FactoryBean<AccountMapper> {
 
 	@Nullable
 	@Override
 	public AccountMapper getObject() throws Exception {
 
 
-		return (AccountMapper) Proxy.newProxyInstance(AccountMapper.class.getClassLoader(),new Class[]{AccountMapper.class},new AccountMapperProxy());
+		return (AccountMapper) Proxy.newProxyInstance(AccountMapper.class.getClassLoader(),new Class<?>[]{AccountMapper.class},new AccountMapperProxy());
 
 	}
 
@@ -56,7 +56,7 @@ class AccountMapperProxy implements InvocationHandler {
 		System.out.println("解析业务sql:"+parseSql+"入参:"+Arrays.asList(args));
 
 		//模拟查询数据库返回
-		Class returnType = method.getReturnType();
+		Class<?> returnType = method.getReturnType();
 		AccountInfo accountInfo = (AccountInfo) returnType.newInstance();
 
 		accountInfo.setAccoutId("111111111");

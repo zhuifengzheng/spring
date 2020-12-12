@@ -25,7 +25,7 @@ import java.util.Set;
  */
 public class TulingImportBeanDefinitionRegister implements ImportBeanDefinitionRegistrar {
 
-	private static Class targetClass = TulingMapperFactorybean.class;
+	private static Class<TulingMapperFactorybean> targetClass = TulingMapperFactorybean.class;
 
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {

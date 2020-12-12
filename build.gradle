@@ -101,9 +101,13 @@ configure(allprojects) { project ->
 			 "-Xlint:divzero", "-Xlint:empty", "-Xlint:finally", "-Xlint:overrides",
 			 "-Xlint:path", "-Xlint:processing", "-Xlint:static", "-Xlint:try", "-Xlint:-options"]
 
+//	compileJava.options*.compilerArgs = commonCompilerArgs +
+//			["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes",
+//			 "-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
+
 	compileJava.options*.compilerArgs = commonCompilerArgs +
 			["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes",
-			 "-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
+			 "-Xlint:deprecation", "-Xlint:unchecked"]
 
 	compileTestJava.options*.compilerArgs = commonCompilerArgs +
 			["-Xlint:-varargs", "-Xlint:-fallthrough", "-Xlint:-rawtypes",

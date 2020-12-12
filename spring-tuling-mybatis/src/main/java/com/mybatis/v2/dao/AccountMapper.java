@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  * @author: smlz
  * @date 2020/5/4 16:44
  */
-
 public interface AccountMapper {
 
 	@TulingSelect(value = "select * from account_info where account_id=?")

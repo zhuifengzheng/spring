@@ -19,18 +19,19 @@ import java.util.Arrays;
  * @author: smlz
  * @date 2020/5/5 14:44
  */
-public class TulingMapperFactorybean<T> implements FactoryBean<T> {
+public class TulingMapperFactorybean implements FactoryBean<Object> {
 
-	private Class<T> targetClass;
+	private Class<Object> targetClass;
 
-	public TulingMapperFactorybean(Class<T> targetClass) {
+	public TulingMapperFactorybean(Class<Object> targetClass) {
 		this.targetClass = targetClass;
 	}
 
 	@Nullable
 	@Override
-	public T getObject() throws Exception {
-		return (T) Proxy.newProxyInstance(targetClass.getClassLoader(),new Class[]{targetClass},new TulingMapperProxy());
+	public Object getObject() throws Exception {
+		return Proxy.newProxyInstance(this.targetClass.getClassLoader(),new Class<?>[]{targetClass},new TulingMapperProxy());
+//		return (T) Proxy.newProxyInstance(this.targetClass.getClassLoader(),new Class<?>[]{targetClass},new TulingMapperProxy());
 	}
 
 	@Nullable
@@ -59,8 +60,15 @@ class TulingMapperProxy implements InvocationHandler{
 		System.out.println("解析业务sql:"+parseSql+"入参:"+ Arrays.asList(args));
 
 		Class<?> clazz = method.getReturnType();
+
+		// todo
+//		if (clazz!=null) {
+//			return clazz.newInstance();
+//		}
 		if(clazz.equals(ProductInfo.class)) {
-			return new ProductInfo();
+			ProductInfo productInfo = new ProductInfo();
+			productInfo.setProductName("测试");
+			return productInfo;
 		}
 		if(clazz.equals(AccountInfo.class)) {
 			return new AccountInfo();

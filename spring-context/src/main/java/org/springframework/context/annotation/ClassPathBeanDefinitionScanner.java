@@ -286,6 +286,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		//循环我们的包路径集合
 		for (String basePackage : basePackages) {
 			//找到候选的Compents
+			//todo 通过org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(org.springframework.beans.factory.annotation.AnnotatedBeanDefinition)
+			// 来判断该bean能否加入到bean定义的map中，默认接口类型加@Component也不会加入到bean定义的map，因为接口不能实例化
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
 			for (BeanDefinition candidate : candidates) {
 
