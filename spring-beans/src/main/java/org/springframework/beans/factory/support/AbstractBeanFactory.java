@@ -279,7 +279,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 			/**
 			 * spring 只能解决单例对象的setter 注入的循环依赖,不能解决构造器注入，
-			 * todo 因为早期bean对象是在bean的构造函数初始化后加入的
+			 * todo 因为早期bean对象是在bean的构造函数初始化后,赋予属性前加入的
 			 */
 			if (isPrototypeCurrentlyInCreation(beanName)) {
 				throw new BeanCurrentlyInCreationException(beanName);

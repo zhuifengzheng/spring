@@ -12,11 +12,11 @@ import java.util.Arrays;
 /**
  * Created by smlz on 2020/3/31.
  */
-public class TulingMapperFactoryBean implements FactoryBean {
+public class TulingMapperFactoryBean implements FactoryBean<Object> {
 
-	private Class targetClass;
+	private Class<?> targetClass;
 
-	public TulingMapperFactoryBean(Class targetClass) {
+	public TulingMapperFactoryBean(Class<?> targetClass) {
 		this.targetClass = targetClass;
 	}
 

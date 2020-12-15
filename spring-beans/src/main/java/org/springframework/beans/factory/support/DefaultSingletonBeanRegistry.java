@@ -225,7 +225,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					/**
 					 * 直接从三级缓存中获取 ObjectFactory对象 这个对接就是用来解决循环依赖的关键所在
 					 * 在ioc后期的过程中,当bean调用了构造方法的时候,把早期对象包裹成一个ObjectFactory
-					 * 暴露到三级缓存中
+					 * 暴露到三级缓存中 todo 主要指代理对象
 					 */
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					//从三级缓存中获取到对象不为空
@@ -272,7 +272,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				 * 标记当前的bean马上就要被创建了
 				 * singletonsCurrentlyInCreation 在这里会把beanName加入进来，若第二次循环依赖（构造器注入会抛出异常）
 				 */
-
+				// todo 将bean名称添加到正在创建到集合中
 				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -281,7 +281,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				}
 				try {
 					//<3> 初始化 bean
-					// 这个过程其实是调用 createBean() 方法
+					// 这个过程其实是调用 createBean() 方法 todo 回调createBean创建bean
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
 				}

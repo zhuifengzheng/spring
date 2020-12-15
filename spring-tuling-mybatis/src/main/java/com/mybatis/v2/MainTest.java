@@ -3,6 +3,7 @@ package com.mybatis.v2;
 
 import com.mybatis.v2.config.SpringMybatisConfig;
 import com.mybatis.v2.dao.ProductMapper;
+import com.mybatis.v2.test.ControllerTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -22,6 +23,10 @@ public class MainTest {
 		ProductMapper productMapper = (ProductMapper) context.getBean("productMapper");
 		productMapper.qryProductInfoById(1);
 		System.out.println("=======================");
+
+
+		ControllerTest controllerTest = (ControllerTest) context.getBean("controllerTest");
+		controllerTest.test(1);
 		/*AccountMapper accountMapper = (AccountMapper) context.getBean("accountMapper");
 		accountMapper.qryAccount(1);*/
 	}

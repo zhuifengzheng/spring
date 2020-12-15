@@ -188,7 +188,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-		//处理我们延时的DeferredImportSelectors w我们springboot就是通过这步进行记载spring.factories文件中的自定装配的对象
+		//处理我们延时的DeferredImportSelectors w我们springboot就是通过这步进行加载spring.factories文件中的自定装配的对象
 		processDeferredImportSelectors();
 	}
 
@@ -323,7 +323,8 @@ class ConfigurationClassParser {
 			}
 		}
 
-		// 处理 @Import annotations
+		// 处理 @Import annotations todo 这里通过getImports(sourceClass)会找到sourceClass所有注解，并将有@Import注解中的类
+		// 在processImports方法里面加载实例化，并保存在configClass中
 		processImports(configClass, sourceClass, getImports(sourceClass), true);
 
 		// 处理 @ImportResource annotations

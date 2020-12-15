@@ -83,6 +83,7 @@ public class InjectionMetadata {
 		Collection<InjectedElement> elementsToIterate =
 				(checkedElements != null ? checkedElements : this.injectedElements);
 		if (!elementsToIterate.isEmpty()) {
+			// todo elementsToIterate是当前创建bean中包含的bean属性，比如当前创建A，A中包含通过@Autowired注入的B，那么这里会先创建B
 			for (InjectedElement element : elementsToIterate) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Processing injected element of bean '" + beanName + "': " + element);

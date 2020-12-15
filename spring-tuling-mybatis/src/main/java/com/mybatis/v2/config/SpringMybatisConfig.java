@@ -4,6 +4,7 @@ import com.mybatis.v2.anno.EnableMapperScanner;
 import com.mybatis.v2.compent.TulingImportBeanDefinitionRegister;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(value = {"com.mybatis.v2"})
 @EnableMapperScanner(basePackage = "com.mybatis.v2.dao")
 //@Import(value = TulingImportBeanDefinitionRegister.class)
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class SpringMybatisConfig {
 
 

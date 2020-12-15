@@ -490,7 +490,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			/**
 			 * 验证和准备覆盖方法
-			 * lookup-method 和 replace-method todo 详细用法参考：https://blog.csdn.net/lightofmiracle/article/details/74988243
+			 * lookup-method 和 replace-method todo 详细用法参考：https://blog.csdn.net/lightofmiracle/article/details/74988243 lookup-method通常用@Autowired自动注入的时候就已经满足大部分使用场景了
 			 * 这两个配置存放在 BeanDefinition 中的 methodOverrides
 			 * 我们知道在 bean 实例化的过程中如果检测到存在 methodOverrides ，
 			 * 则会动态地位为当前 bean 生成代理并使用对应的拦截器为 bean 做增强处理。
@@ -603,13 +603,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						"' to allow for resolving potential circular references");
 			}
 			//把我们的早期对象包装成一个singletonFactory对象 该对象提供了一个getObject方法,该方法内部调用getEarlyBeanReference方法
+// todo 	addSingletonFactory(beanName, () ->{return getEarlyBeanReference(beanName, mbd, bean);});
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
-			//给我们的属性进行赋值(调用set方法进行赋值)
+			//给我们的属性进行赋值(调用set方法进行赋值) todo 里面存在@Autowired注入的类会先创建该类，一直向下查询
 			populateBean(beanName, mbd, instanceWrapper);
 			//进行对象初始化操作(在这里可能生成代理对象)
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
@@ -955,7 +956,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
 					//进行强制转换
 					SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor) bp;
-					//挨个调用SmartInstantiationAwareBeanPostProcessor的getEarlyBeanReference
+					//挨个调用SmartInstantiationAwareBeanPostProcessor的getEarlyBeanReference todo 切面相关调用getEarlyBeanReference
 					exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
 				}
 			}
@@ -1499,7 +1500,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				for (BeanPostProcessor bp : getBeanPostProcessors()) {
 					if (bp instanceof InstantiationAwareBeanPostProcessor) {
 						InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
-						//对依赖对象进行后置处理
+						//对依赖对象进行后置处理 todo 这里通过AutowiredAnnotationBeanPostProcessor的postProcessPropertyValues方法对当前创建bean中存在的其他bean做创建
 						pvs = ibp.postProcessPropertyValues(pvs, filteredPds, bw.getWrappedInstance(), beanName);
 						if (pvs == null) {
 							return;

@@ -24,7 +24,7 @@ public class GenProxyBeanPostProcessor implements BeanPostProcessor {
 				//需要代理
 				System.out.println("需要代理的bean..."+beanName);
 
-				IUserInfoService iUserInfoService = new JDKDynamicProxy(userInfoService).getProxy();
+				IUserInfoService iUserInfoService = (IUserInfoService)new JDKDynamicProxy(userInfoService).getProxy();
 
 				return iUserInfoService;
 			}
