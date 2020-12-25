@@ -91,7 +91,6 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		//获取我们的代理对象的class属性
 		Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null);
-
 		/**
 		 * 调用我们的目标方法执行在事务中:
 		 * 在这我们埋了一个钩子函数 用来回调我们的目标方法的

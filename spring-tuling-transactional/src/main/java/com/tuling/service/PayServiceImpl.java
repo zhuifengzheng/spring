@@ -2,6 +2,7 @@ package com.tuling.service;
 
 import com.tuling.dao.AccountInfoDao;
 import com.tuling.dao.ProductInfoDao;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,24 +32,47 @@ public class PayServiceImpl implements PayService {
             throw new RuntimeException("余额不足");
         }
 
-		//this.updateProductStore(1);
+		//更新余额
+		int retVal = accountInfoDao.updateAccountBlance(accountId,money);
 
-        System.out.println(1/0);
+//		this.updateProductStore(1);
+		try {
+			((PayService)(AopContext.currentProxy())).updateProductStore(1);
+		}catch (Exception e){
+//			throw new RuntimeException("内部异常");
+		}
 
-        //更新余额
-        int retVal = accountInfoDao.updateAccountBlance(accountId,money);
-    }
+//        //更新余额
+//        int retVal = accountInfoDao.updateAccountBlance(accountId,money);
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//		System.out.println(1/0);
+
+	}
+
+    @Transactional(propagation = Propagation.NESTED)
     public void updateProductStore(Integer productId) {
         try{
-            productInfoDao.updateProductInfo(productId);
+
+			productInfoDao.updateProductInfo(productId);
+			System.out.println(1/0);
 
         }
         catch (Exception e) {
             throw new RuntimeException("内部异常");
         }
     }
+
+	@Transactional(propagation = Propagation.NESTED)
+	public void updateProductStore2(Integer productId) {
+		try{
+			productInfoDao.updateProductInfo(productId);
+//			System.out.println(1/(1-productId));
+
+		}
+		catch (Exception e) {
+			throw new RuntimeException("内部异常");
+		}
+	}
 
 
 }

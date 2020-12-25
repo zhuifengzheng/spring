@@ -126,6 +126,7 @@ public @interface EnableAspectJAutoProxy {
 	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
 	 * to standard Java interface-based proxies. The default is {@code false}.
 	 */
+	// todo 设置true使用CGLIB代理，但是接口仍然是jdk代理
 	boolean proxyTargetClass() default false;
 
 	/**
@@ -134,6 +135,7 @@ public @interface EnableAspectJAutoProxy {
 	 * Off by default, i.e. no guarantees that {@code AopContext} access will work.
 	 * @since 4.3.1
 	 */
+	// todo 是否暴露代理对象
 	boolean exposeProxy() default false;
 
 }

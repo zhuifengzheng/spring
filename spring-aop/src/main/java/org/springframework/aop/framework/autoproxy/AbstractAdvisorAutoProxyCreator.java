@@ -56,7 +56,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	 * 我们的AbstractAdvisorAutoProxyCreator的父类AbstractAutoProxyCreator实现了BeanFactoryAware接口
 	 * 而AbstractAutoProxyCreator是我们事务 和aop导入进来的后置处理器的顶级父类 所有在实例化aop和事务导入进来的组件的
 	 * 时候会调用setBeanFactory的方法来注入我们的bean工厂
-	 * 调用了setBeanFactory 会触发initBeanFactory的调用来实例化我们的通知查找探测器
+	 * 调用了setBeanFactory 会触发initBeanFactory的调用来实例化我们的通知查找探测器 todo 即初始化advisorRetrievalHelper
 	 * @param beanFactory
 	 */
 	@Override
@@ -120,6 +120,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 		Assert.state(this.advisorRetrievalHelper != null, "No BeanFactoryAdvisorRetrievalHelper available");
 		/**
 		 * 通过 通知者探测器来帮助我们找到通知,,,,,advisorRetrievalHelper在什么时候初始化的？
+		 * todo setBeanFactory 时候初始化，这个是在调用初始化方法前回调BeanFactoryAware里面调方法设置的
 		 *
 		 */
 		return this.advisorRetrievalHelper.findAdvisorBeans();

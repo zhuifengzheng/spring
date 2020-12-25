@@ -117,7 +117,7 @@ final class PostProcessorRegistrationDelegate {
 			registryProcessors.addAll(currentRegistryProcessors);
 			/**
 			 * 在这里典型的BeanDefinitionRegistryPostProcessor就是ConfigurationClassPostProcessor
-			 * 用于进行bean定义的加载 比如我们的包扫描，@import  等等。。。。。。。。。
+			 * 用于进行bean定义的加载 比如我们的包扫描，todo @ComponentScan,@import  等等。。。。。。。。。
 			 */
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 			//调用完之后，马上clea掉

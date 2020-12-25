@@ -528,7 +528,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareBeanFactory(beanFactory);
 
 			try {
-				// 第四:留个子类去实现该接口
+				// 第四:留个子类去实现该接口 todo 可以注册BeanPostProcessor 作用是在BeanFactory准备工作完成后做一些定制化的处理，一般结合BeanPostProcessor接口的实现类一起使用，注入一些重要资源（类似Application的属性和ServletContext的属性）
 				postProcessBeanFactory(beanFactory);
 
 				// springboot 或 spring容器启动加载到这时，初始化了下面几个bean name
@@ -541,7 +541,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 然后将路径下到bean加载进来
 				invokeBeanFactoryPostProcessors(beanFactory);
 
-				// 调用我们bean的后置处理器
+				// todo 注册我们bean的后置处理器
 				registerBeanPostProcessors(beanFactory);
 
 				// 初始化国际化资源处理器.
@@ -553,7 +553,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 这个方法同样也是留个子类实现的springboot也是从这个方法进行启动tomat的.
 				onRefresh();
 
-				//把我们的事件监听器注册到多播器上
+				//把我们的事件监听器注册到多播器上 todo 并发布早期事件
 				registerListeners();
 
 				//实例化我们剩余的单实例bean.
@@ -582,6 +582,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
+				// todo 清除缓存
 				resetCommonCaches();
 			}
 		}

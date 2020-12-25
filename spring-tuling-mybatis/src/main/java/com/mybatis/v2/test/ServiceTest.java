@@ -13,4 +13,8 @@ public class ServiceTest {
 
 //	@Autowired
 //	private DaoTest daoTest;
+public void test(Integer a){
+	System.out.println("================ServiceTest==========");
+}
+
 }

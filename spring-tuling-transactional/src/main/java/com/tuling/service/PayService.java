@@ -14,4 +14,7 @@ public interface PayService {
     void pay(String accountId, double money);
 
     void updateProductStore(Integer productId);
+
+	void updateProductStore2(Integer productId);
+
 }

@@ -460,14 +460,14 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 				logger.debug("Suspending current transaction, creating new transaction with name [" +
 						definition.getName() + "]");
 			}
-			//挂起已经存在的事物
+			//挂起已经存在的事物 todo 将存在事务的属性取出保存到SuspendedResourcesHolder中
 			SuspendedResourcesHolder suspendedResources = suspend(transaction);
 			try {
 				boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 				//创建一个新的事物状态(包含了挂起的事务的属性)
 				DefaultTransactionStatus status = newTransactionStatus(
 						definition, transaction, true, newSynchronization, debugEnabled, suspendedResources);
-				//开启新的事物
+				//开启新的事物 todo 这里怎么区分是新事务？通过设置事务对象的新连接 txObject.setConnectionHolder(new ConnectionHolder(newCon), true);
 				doBegin(transaction, definition);
 				//把新的事物状态设置到当前的线程变量中去
 				prepareSynchronization(status, definition);
@@ -497,7 +497,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 				status.createAndHoldSavepoint();
 				return status;
 			}
-			else { //处理jpa的不做处理
+			else { // todo 处理jta的不做处理
 				// Nested transaction through nested begin and commit/rollback calls.
 				// Usually only for JTA: Spring synchronization might get activated here
 				// in case of a pre-existing JTA transaction.

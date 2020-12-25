@@ -316,7 +316,7 @@ class ConfigurationClassParser {
 					}
 					//判断当前扫描出来的bean定义是不是一个配置类,若是的话 直接进行递归解析
 					if (ConfigurationClassUtils.checkConfigurationClassCandidate(bdCand, this.metadataReaderFactory)) {
-						//递归解析
+						// todo 递归解析
 						parse(bdCand.getBeanClassName(), holder.getBeanName());
 					}
 				}
